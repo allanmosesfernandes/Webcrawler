@@ -57,8 +57,27 @@ test('Get Relative urls from HTML', () => {
         </a>
     </body>
 </html>`; 
-    const baseURL = "https://Github.com/coreybutler/nvm-windows/releases/"
+    const baseURL = "https://Github.com"
     const actualOutput = getURLsfromHTML(inputHTML,baseURL)
-    const expected = ['https://github.com/path']
+    const expected = ['https://github.com/releases']
+    expect(actualOutput).toEqual(expected)
+})
+
+
+test('More than one Link', () => {
+    const inputHTML = `
+<html>
+    <body>
+        <a href="/releases">
+            Link to Github 
+        </a>
+        <a href="https://Github.com/coreybutler/nvm-windows/releases/">
+            Link to Github 
+        </a>
+    </body>
+</html>`; 
+    const baseURL = "https://Github.com"
+    const actualOutput = getURLsfromHTML(inputHTML,baseURL)
+    const expected = ['https://github.com/releases','https://github.com/coreybutler/nvm-windows/releases/']
     expect(actualOutput).toEqual(expected)
 })

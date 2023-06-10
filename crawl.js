@@ -42,7 +42,7 @@ function normalizeURL(URLstring) {
 const inputHTML = `
     <html>
     <body>
-        <a href="/coreybutler/nvm-windows/releases/">
+        <a href="/releases">
             Link to Github 
         </a>
         <a href="https://Github.com/coreybutler/nvm-windows/releases/">
