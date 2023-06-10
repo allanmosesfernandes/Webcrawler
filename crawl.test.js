@@ -13,9 +13,9 @@ test('name of your test', () => {
 
 */
 
-test('Normalize URLs', () => {
-    const input = ""
+test('Remove protocol', () => {
+    const input = "https://github.com/coreybutler/nvm-windows/releases/"
     const actualOutput = normalizeURL(input)
-    const expected = "something else"
+    const expected = "github.com/coreybutler/nvm-windows/releases/"
     expect(actualOutput).toEqual(expected)
 })
