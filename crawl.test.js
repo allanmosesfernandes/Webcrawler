@@ -16,6 +16,13 @@ test('name of your test', () => {
 test('Remove protocol', () => {
     const input = "https://github.com/coreybutler/nvm-windows/releases/"
     const actualOutput = normalizeURL(input)
-    const expected = "github.com/coreybutler/nvm-windows/releases/"
+    const expected = "github.com/coreybutler/nvm-windows/releases"
+    expect(actualOutput).toEqual(expected)
+})
+
+test('Remove trailing /', () => {
+    const input = "https://github.com/coreybutler/nvm-windows/releases/"
+    const actualOutput = normalizeURL(input)
+    const expected = "github.com/coreybutler/nvm-windows/releases"
     expect(actualOutput).toEqual(expected)
 })

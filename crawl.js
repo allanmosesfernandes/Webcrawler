@@ -1,11 +1,14 @@
 function normalizeURL(URLstring) {
-     const { host, pathname } = new URL(URLstring);
-     const stripProtocol = `${host}${pathname}`
-    
-    // if(stripProtocal.length > 0 && stripProtocal.slice(-1) === '/') {
-    //     return stripProtocal.slice(0,-1);
-    // }
-    // console.log(stripProtocol);
+    const { host, pathname } = new URL(URLstring);
+    const stripProtocol = `${host}${pathname}`;
+
+    // Removing trailing slashes //
+
+    if(stripProtocol.length > 0 && stripProtocol.slice(-1) === '/') {
+        console.log(stripProtocol.slice(0, -1))
+        return stripProtocol.slice(0, -1)
+    }
+
     return stripProtocol;
 }
 // normalizeURL('https://github.com/coreybutler/nvm-windows/releases/')
