@@ -1,9 +1,17 @@
-
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom; 
 
 
 function getURLsfromHTML(htmlBody, baseURL ) {
-    const urls = []
-    return urls
+    const dom = new JSDOM(htmlBody);
+    const urls = [];
+    const Links = dom.window.document.querySelectorAll('a');
+    const linksArr = Array.from(Links)
+    for (const LinkElements of linksArr) {
+        urls.push(LinkElements.href)
+    }
+    console.log(urls);
+    return urls;
 }
 
 
@@ -21,7 +29,24 @@ function normalizeURL(URLstring) {
     console.log(stripProtocol);
     return stripProtocol;
 }
-normalizeURL('https://Github.com/Coreybutler/nvm-windows/releases/')
+
+
+// const inputHTML = `
+//     <html>
+//     <body>
+//         <a href="https://Github.com/coreybutler/nvm-windows/releases/">
+//             Link to Github 
+//         </a>
+//     </body>
+//     </html>`;
+
+
+// const baseURL = "https://Github.com/coreybutler/nvm-windows/releases/"
+
+// getURLsfromHTML(inputHTML, baseURL)
+
+
 module.exports = {
-    normalizeURL
+    normalizeURL,
+    getURLsfromHTML
 }

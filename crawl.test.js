@@ -1,4 +1,4 @@
-const { normalizeURL } = require('./crawl.js');
+const { normalizeURL, getURLsfromHTML } = require('./crawl.js');
 const { test, expect } = require('@jest/globals')
 
 /* 
@@ -9,8 +9,6 @@ test('name of your test', () => {
     const expected = ''
     expect(actualOutput).toEqual(expected)   
 })
-
-
 */
 
 test('Remove protocol', () => {
@@ -26,9 +24,25 @@ test('Trim trailing /', () => {
     const expected = "github.com/coreybutler/nvm-windows/releases"
     expect(actualOutput).toEqual(expected)
 })
+
 test('Normalize remove capitals', () => {
     const input = "https://Github.com/coreybutler/nvm-windows/releases/"
     const actualOutput = normalizeURL(input)
     const expected = "github.com/coreybutler/nvm-windows/releases"
+    expect(actualOutput).toEqual(expected)
+})
+
+test('Get urls from HTML', () => {
+    const inputHTML = `
+<html>
+    <body>
+        <a href="https://Github.com/coreybutler/nvm-windows/releases/">
+            Link to Github 
+        </a>
+    </body>
+</html>`; 
+    const baseURL = "https://Github.com/coreybutler/nvm-windows/releases/"
+    const actualOutput = getURLsfromHTML(inputHTML,baseURL)
+    const expected = ['https://github.com/coreybutler/nvm-windows/releases/']
     expect(actualOutput).toEqual(expected)
 })
