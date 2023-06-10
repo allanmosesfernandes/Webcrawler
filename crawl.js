@@ -6,9 +6,17 @@ function getURLsfromHTML(htmlBody, baseURL ) {
     const dom = new JSDOM(htmlBody);
     const urls = [];
     const Links = dom.window.document.querySelectorAll('a');
-    const linksArr = Array.from(Links)
+    const linksArr = Array.from(Links);
+
     for (const LinkElements of linksArr) {
-        urls.push(LinkElements.href)
+
+        // check if relative URL 
+        if(LinkElements.href.slice(0,1) === '/') {
+            urls.push(`${baseURL.toLowerCase()}${LinkElements.href}`)
+        }
+        else {
+            urls.push(LinkElements.href)
+        }
     }
     console.log(urls);
     return urls;
@@ -31,19 +39,22 @@ function normalizeURL(URLstring) {
 }
 
 
-// const inputHTML = `
-//     <html>
-//     <body>
-//         <a href="https://Github.com/coreybutler/nvm-windows/releases/">
-//             Link to Github 
-//         </a>
-//     </body>
-//     </html>`;
+const inputHTML = `
+    <html>
+    <body>
+        <a href="/coreybutler/nvm-windows/releases/">
+            Link to Github 
+        </a>
+        <a href="https://Github.com/coreybutler/nvm-windows/releases/">
+            Link to Github 
+        </a>
+    </body>
+    </html>`;
 
 
-// const baseURL = "https://Github.com/coreybutler/nvm-windows/releases/"
+const baseURL = "https://Github.com"
 
-// getURLsfromHTML(inputHTML, baseURL)
+getURLsfromHTML(inputHTML, baseURL)
 
 
 module.exports = {

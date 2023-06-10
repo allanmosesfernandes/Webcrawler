@@ -32,7 +32,7 @@ test('Normalize remove capitals', () => {
     expect(actualOutput).toEqual(expected)
 })
 
-test('Get urls from HTML', () => {
+test('Get Absolute urls from HTML', () => {
     const inputHTML = `
 <html>
     <body>
@@ -44,5 +44,21 @@ test('Get urls from HTML', () => {
     const baseURL = "https://Github.com/coreybutler/nvm-windows/releases/"
     const actualOutput = getURLsfromHTML(inputHTML,baseURL)
     const expected = ['https://github.com/coreybutler/nvm-windows/releases/']
+    expect(actualOutput).toEqual(expected)
+})
+
+
+test('Get Relative urls from HTML', () => {
+    const inputHTML = `
+<html>
+    <body>
+        <a href="/releases">
+            Link to Github 
+        </a>
+    </body>
+</html>`; 
+    const baseURL = "https://Github.com/coreybutler/nvm-windows/releases/"
+    const actualOutput = getURLsfromHTML(inputHTML,baseURL)
+    const expected = ['https://github.com/path']
     expect(actualOutput).toEqual(expected)
 })
