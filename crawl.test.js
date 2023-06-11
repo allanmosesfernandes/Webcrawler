@@ -81,3 +81,22 @@ test('More than one Link', () => {
     const expected = ['https://github.com/releases','https://github.com/coreybutler/nvm-windows/releases/']
     expect(actualOutput).toEqual(expected)
 })
+
+
+test('Invalid Relative path', () => {
+    const inputHTML = `
+<html>
+    <body>
+        <a href="invalid">
+            Link to Github 
+        </a>
+        <a href="https://Github.com/coreybutler/nvm-windows/releases/">
+            Link to Github 
+        </a>
+    </body>
+</html>`; 
+    const baseURL = "https://Github.com"
+    const actualOutput = getURLsfromHTML(inputHTML,baseURL)
+    const expected = ['https://github.com/coreybutler/nvm-windows/releases/']
+    expect(actualOutput).toEqual(expected)
+})

@@ -20,6 +20,7 @@
   "homepage": "https://github.com/allanmosesfernandes/Webcrawler#readme",
   "dependencies": {
     "jest": "^29.5.0",
-    "jsdom": "^22.1.0"
+    "jsdom": "^22.1.0",
+    "valid-url": "^1.0.9"
   }
 }
