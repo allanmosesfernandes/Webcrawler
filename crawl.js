@@ -1,10 +1,9 @@
 const jsdom = require("jsdom");
 const validUrl = require('valid-url');
 const { JSDOM } = jsdom;
-const { fetcher : PageHTML } = require("./fetcher.js")
+const { fetcher } = require("./fetcher.js")
 
 
-const body = PageHTML()
 
 function getURLsfromHTML(htmlBody, baseURL) {
   const dom = new JSDOM(htmlBody);
@@ -47,21 +46,21 @@ function normalizeURL(URLstring) {
   return stripProtocol;
 }
 
-const inputHTML = `
-  <html>
-  <body>
-    <a href="invalid">
-      Link to Github
-    </a>
-    <a href="https://Github.com/coreybutler/nvm-windows/releases/">
-      Link to Github
-    </a>
-  </body>
-  </html>`;
+// const inputHTML = `
+//   <html>
+//   <body>
+//     <a href="invalid">
+//       Link to Github
+//     </a>
+//     <a href="https://Github.com/coreybutler/nvm-windows/releases/">
+//       Link to Github
+//     </a>
+//   </body>
+//   </html>`;
 
-const baseURL = "https://Github.com";
+// const baseURL = "https://Github.com";
 
-getURLsfromHTML(inputHTML, baseURL);
+// getURLsfromHTML(inputHTML, baseURL);
 
 module.exports = {
   normalizeURL,

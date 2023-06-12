@@ -1,4 +1,4 @@
-const { fetcher : PageHTML } = require("./fetcher.js")
+const { fetcher } = require("./fetcher.js")
 
 
 function main() {
@@ -12,7 +12,8 @@ function main() {
         process.exit(1)
     }
     const baseURL = process.argv[2];
-    const crawlPage = PageHTML(baseURL);
+    const crawlPage = fetcher(baseURL,baseURL,{});
+    console.log(crawlPage);
 }
 
 main()
