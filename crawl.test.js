@@ -1,6 +1,5 @@
 const { normalizeURL, getURLsfromHTML } = require('./crawl.js');
 const { test, expect } = require('@jest/globals')
-
 /* 
 the way JEST works with tests is 
 test('name of your test', () => {

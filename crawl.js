@@ -1,9 +1,10 @@
 const jsdom = require("jsdom");
 const validUrl = require('valid-url');
 const { JSDOM } = jsdom;
+const { fetcher : PageHTML } = require("./fetcher.js")
 
 
-
+const body = PageHTML()
 
 function getURLsfromHTML(htmlBody, baseURL) {
   const dom = new JSDOM(htmlBody);

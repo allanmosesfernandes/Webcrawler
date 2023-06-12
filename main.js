@@ -1,4 +1,5 @@
-const validUrl = require('valid-url');
+const { fetcher : PageHTML } = require("./fetcher.js")
+
 
 function main() {
 
@@ -11,7 +12,7 @@ function main() {
         process.exit(1)
     }
     const baseURL = process.argv[2];
-    console.log(`Starting crawl of website ${baseURL}`);
+    const crawlPage = PageHTML(baseURL);
 }
 
 main()
